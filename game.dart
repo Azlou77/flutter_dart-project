@@ -44,15 +44,17 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       // Add text fields
       body:
-      ElevatedButton(
-        onPressed: () {
-            print("j'ai cliqué");
-        },
-        child: const Text('Cliquez ici'),
-        ),
-    );
+      Column(
+        children : [
+            ElevatedButton(
+                onPressed: () {
+                  print ('Bouton cliqué');
+                },
+                child: Text('Action'),
+            ),
+        ]),
+      );
     }
 }
-
 
     
