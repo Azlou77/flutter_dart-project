@@ -42,12 +42,13 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('Bienvenue'),
         backgroundColor: Colors.red,
       ),
-      body: const Text('Mon application',
-                        style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.red,
-      ))
-                    );
+      body Container(
+        height: 200,
+        width: 200,
+        color: Colors.red,
+        child: Text ('Je suis dans la boite'))
+      
+    );
   }
 }
 
