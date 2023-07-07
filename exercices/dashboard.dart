@@ -13,6 +13,36 @@ class Dashboard extends StatefulWidget {
   State<Dashboard> createState() => _DashboardState();
 }
 class _DashboardState extends State<Dashboard> {
+
+    // Variables to get the index of the navbar
+    TextEdintingController emailController = TextEditingController();
+    TextEdintingController passwordController = TextEditingController();
+    bool isConnected = true;
+
+    // functions to display errors
+    void popErreurs(){
+        showDialog(
+            // Force the user to click on the button, if not the alert will not close
+            barrierDismissible: false,
+            context: context,
+            builder: (context){
+                return AlertDialog(
+                    title: Text('Erreur'),
+                    content: Text('Erreurs dans votre saisie'),
+                    actions:[
+                        TextButton(
+                            onPressed: (){
+                                // Allow the user to close the alert on browser
+                                Navigator.of(context).pop();
+                            },
+                            child: Text('OK')
+                        )
+                    ]
+
+                )
+            }
+        )
+    }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
