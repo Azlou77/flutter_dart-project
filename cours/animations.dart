@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 class Animation extends StatefulWidget {
   Widget child;
@@ -25,6 +26,21 @@ class AnimationsState extends State<Animations> with SingleTickerProviderStateMi
         vsync: this,
         duration: Duration(milliseconds: 1500),
         );
+        // Animations 
+        CurvedAnimation curveAnimation = CurvedAnimation(
+            parent: _controller,
+            curve: Curves.linear,
+        );
+        animations = Tween<Offset>(
+            begin: Offset(0.0, 1.0),
+            end: Offset.zero,
+        ).animate(curveAnimation);
+
+        // lauch the animation
+        // The time is in second because we lauch application after 1 second
+        Timer(Duration(seconds: widget.time), () {
+            _controller.forward();
+        })
     }
 
 // dispose allow to when you leave the page, the animation stop
@@ -37,26 +53,12 @@ class AnimationsState extends State<Animations> with SingleTickerProviderStateMi
 @override
 Widget build(BuildContext context){
     // Tween allow to create animation
-    animationOffset = Tween<Offset>(
-        begin: Offset(0.0, 1.0),
-        end: Offset.zero,
-    ).animate(CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeInOutCubic,
-    ));
-    
-    // Add listener to the animation
-    _controller.addListener(() {
-        setState(() {});
-    });
-    
-    // Add the animation to the controller
-    _controller.forward();
-    
-    return SlideTransition(
-        position: animationOffset,
-        child: widget.child,
+    return FadeTransition(
+        opacity: _controller,
+        child: SlideTransition(
+            position: animationOffset,
+            child: widget.child,
+        ),
     );
-    }
-    }
-    
+}
+ 

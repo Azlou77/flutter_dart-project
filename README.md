@@ -1,5 +1,6 @@
 # flutter_dart-project
 **Teacher:** Djino Dissingaz
+**Email:** dissingazdjino@icloud.com
 **Cours:** Dart
 
 **Cours:**
