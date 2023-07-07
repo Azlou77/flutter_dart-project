@@ -42,13 +42,19 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('Bienvenue'),
         backgroundColor: Colors.red,
       ),
-      body Container(
+      body: Container(
         height: 200,
         width: 200,
         color: Colors.red,
-        child: Text ('Je suis dans la boite'))
-      
-    );
+        child: Text ('Je suis dans la boite'),
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin : Alignment.topLeft,
+                end : Alignment.bottomRight,
+                colors: [Colors.red, Colors.blue]
+            )
+        ),
+        ),
+        );
   }
-}
 
