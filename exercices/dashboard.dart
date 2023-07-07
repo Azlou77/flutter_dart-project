@@ -15,7 +15,8 @@ class _DashboardState extends State<Dashboard> {
          the bottom, righ and left */
       body: SafeArea(child:Text('Bienvenue sur le dashboard')),
 
-     // Add navbar
+
+     // Add navbar bottom
         bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -32,9 +33,23 @@ class _DashboardState extends State<Dashboard> {
             ),
         ],
         // Add onTap
-        onTap: (int index) {
-            print(index);
-        },
+        currentIndex: indexMenu,
+        onTap: (value) {
+            setState(() {
+                indexMenu = value;
+            });
+        }
+        // Add widget to change page
+        Widget bodyPage(){
+            swicth (index){
+                case 0:
+                    return Text('Home');
+                case 1:
+                    return Text('Business');
+                case 2:
+                    return Text('School');
+            }
+        }
         ),
     )
   }
