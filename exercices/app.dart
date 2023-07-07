@@ -19,6 +19,7 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text('Bienvenue'),
           backgroundColor: Colors.red,
         ),
+      );
         body: 
         // Add Text
         const TextField(
@@ -31,8 +32,22 @@ class _MyHomePageState extends State<MyHomePage> {
         const TextFormField(
           decoration: InputDecoration(
             hintText: 'Entrez votre email',
+            prefixIcon: Icon(Icons.email),
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
           ),
         ),
+
+        // Add password field
+        const TextFormField(
+          decoration: InputDecoration(
+            hintText: 'Entrez votre mot de passe',
+            prefixIcon: Icon(Icons.lock),
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+          ),
+        ),
+
 
         // Add button
         ElevatedButton(
