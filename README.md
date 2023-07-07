@@ -1,4 +1,6 @@
 # flutter_dart-project
+**Teacher:** Djino Dissingaz
+**Cours:** Dart
 
 **Cours:**
 - Variables

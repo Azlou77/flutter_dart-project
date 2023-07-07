@@ -46,6 +46,22 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /* Drawer is a widget that allow to create a menu
+         on the left of the screen also call burger menu */
+      drawer: Container(
+        /* Retrieve all the height of the device 
+           tablets, smartphones, TV, Desktop, PC and adapt */
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width *0.45,
+        color: Colors.red,
+        child: SafeArea(
+            child: Column(
+                children: [
+                    
+                ]
+            )
+        )
+      )
       appBar: AppBar(
         // Add title ou error if password is null
         title:  Text(widget.password??"J'ai pas de mot de passe"),
