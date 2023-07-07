@@ -1,12 +1,24 @@
 /* Redirection's page when clik on button 
    in the app.dart page */
+class Dashboard extends StatefulWidget {
 
+  // Retrieve email and password
+  String email;
+  String password;
+ 
+  // Retrieve email and password
+  Dashboard({Key? key, required this.email, required this.password}) : super(key: key);
+
+  @override
+  State<Dashboard> createState() => _DashboardState();
+}
 class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dashboard'),
+        // Add title ou error if password is null
+        title:  Text(widget.password??"J'ai pas de mot de passe"),
         backgroundColor: Colors.red,
       ),
       /* SafeArea  is a widget that prevent the content
