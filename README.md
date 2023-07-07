@@ -9,6 +9,8 @@
 - Text fields
 - Buttons 
 - Images
+- Animations 
+- API FIREBASE
 
 **Exercices:**
 - Create page connexion with
@@ -19,3 +21,6 @@
 - When click on icons change page.
 - Same on button redirect to the page or 
   modal popup error.
+- Animations for images, fields email, password and buttons
+
+

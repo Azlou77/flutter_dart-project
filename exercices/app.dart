@@ -57,6 +57,24 @@ class _MyHomePageState extends State<MyHomePage> {
           child: const Text('Cliquez ici'),
           ),
       );
+
+      // Animations
+      // Image animation
+
+
+      // Text animation
+
+
+      // Email field animation
+
+
+      // Password field animation
+
+
+      // Button animation
+
+
       }
-  }
+}
+
 
