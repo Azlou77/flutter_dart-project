@@ -42,19 +42,10 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('Bienvenue'),
         backgroundColor: Colors.red,
       ),
-      body: Container(
-        height: 200,
-        width: 200,
-        color: Colors.red,
-        child: Text ('Je suis dans la boite'),
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin : Alignment.topLeft,
-                end : Alignment.bottomRight,
-                colors: [Colors.red, Colors.blue]
-            )
-        ),
-        ),
-        );
-  }
+      // Add  images
+      body: Image.network("https://s2.qwant.com/thumbr/474x474/7/9/9eeb7017187a90eb637b75672c67f4af4979cf58139d0363c9a7461e16a4eb/th.jpg?u=https%3A%2F%2Ftse.mm.bing.net%2Fth%3Fid%3DOIP.ckeUFk-yid0vfWnd56w7wAHaHa%26pid%3DApi&q=0&b=1&p=0&a=0")
+    );
+    }
+}
 
+    
