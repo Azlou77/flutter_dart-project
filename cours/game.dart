@@ -39,40 +39,26 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        const Images(
+        image: NetworkImage('https://s2.qwant.com/thumbr/474x266/c/8/f187c10a03093415719d2feb55fb7a6992a3be66735c4c4e7ec3a9bd380455/th.jpg?u=https%3A%2F%2Ftse2.explicit.bing.net%2Fth%3Fid%3DOIP.fqZ9-PPqcG_cm0k3JfoINQHaEK%26pid%3DApi&q=0&b=1&p=0&a=0'),
+        ),
         title: Text('Bienvenue'),
         backgroundColor: Colors.red,
       ),
-      // Add text fields
-      body:
-      // Stack or Column or Row
-      Column(
-        children : [
-            ElevatedButton(
-                onPressed: () {
-                  print ('Bouton cliqué');
-                },
-                child: Text('Action'),
-            ),
-            Text('Bonjour'),
-             Container (
-               height: 100,
-               width: 100,
-               color: Colors.blue,
-               child: Text('Container'),
-             ),
-             SingleChildView(),
-                MultipleChildView(),
-                Expanded(
-                  child: Container(
-                    color: Colors.green,
-                    child: Text('Expanded'),
-                  ),
-                ),
+      body: 
+      const TextField(
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          labelText: 'Louis Nguyen',
+        ),
+      ), 
+      const TextFormField(
+        decoration: InputDecoration(
+          hintText: 'Entrez votre email',
+        ),
+      ),
 
-
-        ]),
-      );
-    }
-}
-
-    
+      // Add button
+      
+      
+        
