@@ -44,6 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       // Add text fields
       body:
+      // Stack or Column or Row
       Column(
         children : [
             ElevatedButton(
@@ -52,6 +53,23 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 child: Text('Action'),
             ),
+            Text('Bonjour'),
+             Container (
+               height: 100,
+               width: 100,
+               color: Colors.blue,
+               child: Text('Container'),
+             ),
+             SingleChildView(),
+                MultipleChildView(),
+                Expanded(
+                  child: Container(
+                    color: Colors.green,
+                    child: Text('Expanded'),
+                  ),
+                ),
+
+
         ]),
       );
     }
