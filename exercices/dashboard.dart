@@ -57,7 +57,20 @@ class _DashboardState extends State<Dashboard> {
         child: SafeArea(
             child: Column(
                 children: [
-                    
+                    // Add avatars circulars
+                    CircleAvatar(
+                        radius: 50,
+                        backgroundImage: NetworkImage('https://s2.qwant.com/thumbr/474x266/c/8/f187c10a03093415719d2feb55fb7a6992a3be66735c4c4e7ec3a9bd380455/th.jpg?u=https%3A%2F%2Ftse2.explicit.bing.net%2Fth%3Fid%3DOIP.fqZ9-PPqcG_cm0k3JfoINQHaEK%26pid%3DApi&q=0&b=1&p=0&a=0'),
+                    ),
+                    // Add first name and  last name
+                    Text('Louis Nguyen'),
+
+                    // Add pseudo
+                    Text('Azlou77')
+
+                    // Add email
+                    Text('louis@gmail.com')
+
                 ]
             )
         )
