@@ -154,7 +154,14 @@
                       child: const Text("Connexion")
                   )
                   // Add properties from FireStore
-                  FirestoreHelper().registerUser(nom.text, prenom.text, mail.text, password.text);
+                  FirestoreHelper().registerUser(nom.text, prenom.text, mail.text, password.text).then((value){
+                    ScaffolderMessager.of(context).clearSnackBars();
+                    Chargement();
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context)=>DashBoard()));
+                  })catchError((e){
+                  
+                  });
                 ],
               ),
             ),
