@@ -47,4 +47,10 @@ cloudUsers.doc(uid).set(map);
 
 
 }
+// stock images
+stockageImage(String dossier, String nameImage, String uid, Uint8List datas) async {
+    TaskSnapshot snapshot =  await storage.ref("/images/$uid/$nameImage").putData(datas);
+    String url = await snapshot.ref.getDownloadURL();
+    return url;
+}
 }
