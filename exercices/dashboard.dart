@@ -42,6 +42,7 @@ class _DashBoardState extends State<DashBoard> {
           ),
         ),
       ),
+      FirestoreHelper().stockageImage("images", "image.jpg"),
       appBar: AppBar(
         title: Text(widget.password ??"J'ai pas tapé le password",),
       ),
