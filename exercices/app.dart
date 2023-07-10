@@ -153,6 +153,8 @@
                       },
                       child: const Text("Connexion")
                   )
+                  // Add properties from FireStore
+                  FirestoreHelper().registerUser(nom.text, prenom.text, mail.text, password.text);
                 ],
               ),
             ),
