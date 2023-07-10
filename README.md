@@ -10,7 +10,8 @@
 - Buttons 
 - Images
 - Animations 
-- API FIREBASE
+- API FIREBASE fetch les informations
+
 
 **Exercices:**
 - Create page connexion with
