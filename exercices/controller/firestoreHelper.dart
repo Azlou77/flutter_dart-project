@@ -14,7 +14,7 @@ class FirestoreHelper {
 
   //méthode
   //inscription
-  register(String nom, String prenom , String email , String password) async {
+  Future<Utilisateur>register(String nom, String prenom , String email , String password) async {
     UserCredential resultat = await auth.createUserWithEmailAndPassword(email: email, password: password);
     String uid = resultat.user!.uid;
     Map<String,dynamic> map = {

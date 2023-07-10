@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dart-project/exercices/controller/firestoreHelper.dart';
 
 class DashBoard extends StatefulWidget {
   String? mail;
@@ -25,7 +26,8 @@ class _DashBoardState extends State<DashBoard> {
               //avatar circulaire
               CircleAvatar(
                 radius: 60,
-                backgroundImage: NetworkImage("https://tse4.mm.bing.net/th?id=OIP.L39zRncyWUqe2lqci3uGCwHaEK&pid=Api"),
+                // Add background image with constante
+                backgroundImage: NetworkImage(image.image),
               ),
 
               //nom prénom

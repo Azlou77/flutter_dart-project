@@ -83,7 +83,7 @@
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       image: const DecorationImage(
-                        image: NetworkImage("https://tse4.mm.bing.net/th?id=OIP.L39zRncyWUqe2lqci3uGCwHaEK&pid=Api"),
+                        const image: NetworkImage("https://tse4.mm.bing.net/th?id=OIP.L39zRncyWUqe2lqci3uGCwHaEK&pid=Api"),
                         fit: BoxFit.fill
                       )
                     ),
