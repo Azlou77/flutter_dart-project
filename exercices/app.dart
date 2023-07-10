@@ -1,5 +1,5 @@
   import 'package:flutter/material.dart';
-  import 'package:ipssi_bd23_2/view/dashboad_main.dart';
+  import 'package:flutter_dart-project/exercices/dashboard.dart';
 
   void main() {
     runApp(const MyApp());
