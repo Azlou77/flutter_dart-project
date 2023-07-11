@@ -57,3 +57,4 @@ stockageImage(String dossier, String nameImage, String uid, Uint8List datas) asy
     return url;
 }
 }
+}

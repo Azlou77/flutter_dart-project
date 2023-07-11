@@ -71,7 +71,7 @@ class _DashBoardState extends State<DashBoard> {
 
   Widget bodyPage(){
     switch(indexMenu){
-      case 0 : return Text("Liste de personnes");
+      case 0 : return const AllPerson()
       case 1 : return Text("Favoris");
       default: return Text("Erreur");
     }
