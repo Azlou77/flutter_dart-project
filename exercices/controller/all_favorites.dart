@@ -53,8 +53,50 @@ class _AllFavoritesState extends State<AllFavorites> {
         icon: const FaIcon(FontAwesomeIcons.pencil,color: Colors.red,size: 15,)
       ),
 
-      
+
     
     );
   }
+    // Return users with favoris
+    // StreamBuilder is a widget to reduce repetetive tasks linked to the Stream using
+    return StreamBuilder<QuerySnapshot>(
+        stream : FirestoreHelper().cloudUsers.snapshots(),
+            buidler: (context,snap){
+                List documents = snap.data!.docs;
+                if(documents == []){
+                    return Text("Aucune donnees");
+
+                }
+                else {
+                    ListView.builder(
+                        // Count the number of users
+                        itemCount: documents!.length,
+                        itemBuilder: (context,index){
+                            // Index return the current user and all properties of him
+                            Utilisateurs lesAutres = Utilisateur(documents[index]);
+                            return Text(lesAutres.favoris
+                            
+                            )
+            // Styling the users with Card 
+             return Card(
+                   elevation: 10,
+                   color: Colors.white,
+                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                   child: ListTile(
+                     leading: CircleAvatar(
+                       radius: 60,
+                       backgroundImage: NetworkImage(lesAutres.avatar ?? defaultImage),
+                     ),
+                     title: Text(lesAutres.fullName),
+                     subtitle: Text(lesAutres.email,textAlign: TextAlign.start,),
+                     trailing: IconButton(
+                       onPressed: (){
+
+                       },
+                       icon: const Icon(Icons.favorite),
+
+                     ),
+                   ),
+                 );
 }
+

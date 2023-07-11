@@ -5,7 +5,7 @@ class DashBoard extends StatefulWidget {
   String? mail;
   String? password;
   DashBoard({Key? key,this.mail,this.password}) : super(key: key);
-  bool isUpdated = false;
+  bool isUpdatedPseudo = false;
   // Controller for the pseudo
   TextEditingController pseudo = TextEditingController();
 
