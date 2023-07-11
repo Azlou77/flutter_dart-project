@@ -5,6 +5,9 @@ class DashBoard extends StatefulWidget {
   String? mail;
   String? password;
   DashBoard({Key? key,this.mail,this.password}) : super(key: key);
+  bool isUpdated = false;
+  // Controller for the pseudo
+  TextEditingController pseudo = TextEditingController();
 
   @override
   State<DashBoard> createState() => _DashBoardState();
@@ -59,6 +62,7 @@ class _DashBoardState extends State<DashBoard> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.person),label: "Personnes"),
           BottomNavigationBarItem(icon: Icon(Icons.favorite),label: "Favoris")
+          BottomNavigationBarItem(icon: Icon(Icons.map),label: "Carte")
         ]
       ),
 
@@ -72,4 +76,41 @@ class _DashBoardState extends State<DashBoard> {
       default: return Text("Erreur");
     }
   }
+  (isUpdatedPseudo)?Row(
+    // Center the children
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      // Flexible widget to take the remaining space
+      Flexible(
+      child: Textfield(
+        controller: pseudo,
+        decoration: InputDecoration(
+          labelText: "Pseudo",
+          hintText: "Entrez votre pseudo"
+        ),
+      ),
+      ),
+    ]
+  )
+  
+  // Buttons for validation or cancel
+  TextButton(onPressed: (){
+    // Bring back to the initial state
+    setState(() {
+      moi.pseudo = pseudo.text;
+      Map<String,dynamic> map = {
+        "PSEUDO":moi.pseudo
+      };
+      // Call the update method
+      FirestoreHelper().updateUser(moi.uid, map);
+      isUpdatedPseudo = false;
+    });
+  },
+  child : Text("Valider")
+  )
+
+  : TextButton(onPressed: (){
+    child: Text("Annuler")
+  })
 }
+  
