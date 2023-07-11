@@ -42,6 +42,10 @@ addUser(String uid , Map<String,dynamic> map){
 cloudUsers.doc(uid).set(map);
 }
 
+// Save the AllFavorites
+updateAllFavorites(String uid, List<String> list){
+    cloudUsers.doc(uid).update({"FAVORIS":list});
+}
 // update user
 updateUser(String uid, Map<String,dynamic> map){
     cloudUsers.doc(uid).update(map);
@@ -57,4 +61,5 @@ stockageImage(String dossier, String nameImage, String uid, Uint8List datas) asy
     return url;
 }
 }
+
 }
