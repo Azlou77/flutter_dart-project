@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-    
+
 class DataMaps extends StatefulWidget{
     @override
     _DataMapsState createState() => _DataMapsState();
@@ -29,6 +29,8 @@ class _DataMapsState extends State<DataMaps>{
         return GoogleMap(
            myLocationEnabled: true,
            onMapCreated: (controller){
+            // Define styles
+            controller.setMapStyle(Utils.mapStyle);
             // Apply camera properties defined in initState
             completer.complete(controller);
            },
