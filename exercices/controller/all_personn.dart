@@ -25,17 +25,49 @@ class _AllPersonState extends State<AllPerson> {
 
                 }
                 else {
-                    ListView.builder(
-                        // Count the number of users
-                        itemCount: documents!.length,
-                        itemBuilder: (context,index){
-                            // Index return the current user and all properties of him
-                            Utilisateurs lesAutres = Utilisateur(documents[index]);
-                            return Text(lesAutres.email)
-                        }
-                    )
-                }
-            }
-    );
+                ListView.builder(
+                    // Count the number of users
+                    itemCount: documents!.length,
+                    itemBuilder: (context,index){
+                        // Index return the current user and all properties of him
+                        return Card(
+                   elevation: 10,
+                   color: Colors.white,
+                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                   child: ListTile(
+                     leading: CircleAvatar(
+                       radius: 60,
+                       backgroundImage: NetworkImage(lesAutres.avatar ?? defaultImage),
+                     ),
+                     title: Text(lesAutres.fullName),
+                     subtitle: Text(lesAutres.email,textAlign: TextAlign.start,),
+                     trailing: IconButton(
+                       // To select only one icons
+                       isSelected: isSelected,
+                       onPressed: (int index){
+                        // Add a new favoris in the database
+                          FirestoreHelper().addFavorites(moi.uid, lesAutres.uid);
+                        // Change state on click
+                        setState(() {
+                            // Change state on selected button
+                            isSelected[index] = !isSelected[index];
+                        // Change icon color on change state
+                        icon: const FaIcon(FontAwesomeIcons.pencil,color: Colors.red,size: 15,)
+
+                       },
+                       icon: const Icon(Icons.favorite),
+
+                        ),
+                    ),
+                ),
+            ),
+        );
     }
 }
+}
+}
+                    
+
+                       
+
+                

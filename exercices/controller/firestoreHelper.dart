@@ -10,7 +10,7 @@ final storage = FirebaseStorage.instance;
 final cloudUsers = FirebaseFirestore.instance.collection("UTILISATEURS");
 final cloudMessages = FirebaseFirestore.instance.collection("MESSAGES");
 
-// Return List of users
+
 public boolean contains(@NonNull String field)
 
 
@@ -70,13 +70,12 @@ addFavorites(String uid, List? favoris) {
 
     // Favoris reference to the database
     DatabaseReference favorisListRef =  FirebaseDatabase.instance.ref("FAVORIS");
+    // Push a new favoris to the database
     DatabaseReference newFavorisRef = favorisListRef.push();
     newFavorisRef.set({
         "UID":uid,
         "FAVORIS":favoris
 });
-    cloudUsers.doc(uid).set({"FAVORIS":favoris});
-
 }
 /*
     * Get list of favorites from the database
@@ -85,6 +84,8 @@ addFavorites(String uid, List? favoris) {
     * @return list users
  */
  Future<Utilisateur> getFavorites(String uid, List? favoris) async {
+    // Await Firebase get Users by id
     DocumentSnapshot snapshot = await cloudUsers.doc(uid).get();
     return Utilisateur(snapshot);
+    }
 }
