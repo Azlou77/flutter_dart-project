@@ -1,27 +1,16 @@
-# flutter_dart-project
-- **Teacher:** Djino Dissingaz
-- **Email:** dissingazdjino@icloud.com
-- **Cours:** Dart
+# ipssi_bd23_2
 
-**Cours:**
-- Variables
-- Styles color and gradient
-- Text fields
-- Buttons 
-- Images
-- Animations 
-- API FIREBASE fetch les informations
+A new Flutter project.
 
+## Getting Started
 
-**Exercices:**
-- Create page connexion with
-  1 image 
-  1 field email
-  1 field password
-  1 button sumbit
-- When click on icons change page.
-- Same on button redirect to the page or 
-  modal popup error.
-- Animations for images, fields email, password and buttons
+This project is a starting point for a Flutter application.
 
+A few resources to get you started if this is your first Flutter project:
 
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
