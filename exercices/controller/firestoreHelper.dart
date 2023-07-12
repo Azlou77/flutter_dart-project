@@ -10,6 +10,8 @@ final storage = FirebaseStorage.instance;
 final cloudUsers = FirebaseFirestore.instance.collection("UTILISATEURS");
 final cloudMessages = FirebaseFirestore.instance.collection("MESSAGES");
 
+// Return List of users
+public boolean contains(@NonNull String field)
 
 
 //méthode
@@ -42,10 +44,7 @@ addUser(String uid , Map<String,dynamic> map){
 cloudUsers.doc(uid).set(map);
 }
 
-// Save the AllFavorites
-updateAllFavorites(String uid, List<String> list){
-    cloudUsers.doc(uid).update({"FAVORIS":list});
-}
+
 // update user
 updateUser(String uid, Map<String,dynamic> map){
     cloudUsers.doc(uid).update(map);
@@ -60,6 +59,32 @@ stockageImage(String dossier, String nameImage, String uid, Uint8List datas) asy
     String url = await snapshot.ref.getDownloadURL();
     return url;
 }
-}
 
+}
+/*
+    * Add a favorite to the database
+    * @param string uid
+    * @param list favoris 
+ */
+addFavorites(String uid, List? favoris) {
+
+    // Favoris reference to the database
+    DatabaseReference favorisListRef =  FirebaseDatabase.instance.ref("FAVORIS");
+    DatabaseReference newFavorisRef = favorisListRef.push();
+    newFavorisRef.set({
+        "UID":uid,
+        "FAVORIS":favoris
+});
+    cloudUsers.doc(uid).set({"FAVORIS":favoris});
+
+}
+/*
+    * Get list of favorites from the database
+    * @param string uid
+    * @param list favoris 
+    * @return list users
+ */
+ Future<Utilisateur> getFavorites(String uid, List? favoris) async {
+    DocumentSnapshot snapshot = await cloudUsers.doc(uid).get();
+    return Utilisateur(snapshot);
 }

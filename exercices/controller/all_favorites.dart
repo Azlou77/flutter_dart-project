@@ -98,5 +98,7 @@ class _AllFavoritesState extends State<AllFavorites> {
                      ),
                    ),
                  );
-}
-
+                }
+                }
+              }
+              }
