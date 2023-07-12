@@ -12,7 +12,7 @@ class FirestoreHelper {
   final storage = FirebaseStorage.instance;
   final cloudUsers = FirebaseFirestore.instance.collection("UTILISATEURS");
   final cloudMessages = FirebaseFirestore.instance.collection("MESSAGES");
-  
+
 
 
   //méthode
@@ -64,6 +64,18 @@ updateUser(String uid, Map<String,dynamic> map){
     String url = await snapshot.ref.getDownloadURL();
     return url;
   }
+
+   // Add messages to the database
+   addMessage(String uid, Map<String,dynamic> map){
+      cloudMessages.doc(uid).set(map);
+    }
+   // Get messages from the database
+   Future<List<QueryDocumentSnapshot>> getMessages() async{
+        QuerySnapshot snapshot = await cloudMessages.get();
+        return snapshot.docs;
+   }
+
+
 
 
 }
