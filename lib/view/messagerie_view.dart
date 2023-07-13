@@ -1,8 +1,12 @@
+import 'package:ipssi_bd23_2/controller/firestoreHelper.dart';
 import 'package:ipssi_bd23_2/model/utilisateur.dart';
 import 'package:flutter/material.dart';
 import 'package:ipssi_bd23_2/view/background_view.dart';
+import 'package:ipssi_bd23_2/model/message.dart';
+import '../controller/constante.dart';
 
 class MessagerieView extends StatefulWidget {
+  // Use to get informations for the personn who interact with
   Utilisateur autrePersonne;
   MessagerieView({Key? key,required this.autrePersonne}) : super(key: key);
 
@@ -11,7 +15,9 @@ class MessagerieView extends StatefulWidget {
 }
 
 class _MessagerieViewState extends State<MessagerieView> {
-  //variable
+  // variables
+  /* TextEditingController allow you to read text in input field
+     use with FireStoreHelper().addMessage() */
   TextEditingController messageController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -68,9 +74,29 @@ class _MessagerieViewState extends State<MessagerieView> {
                   ),
                   IconButton(
                       onPressed: (){
+                        // Define collection of key/value pairs for message table
+                        Map<String, dynamic> map = {
+
+                          // Use constant "moi" define to initialise a user when the app is connected
+                          "UID": moi.uid,
+                          "NOM": moi.nom,
+                          "PRENOM": moi.prenom,
+
+                          // To get the current date
+                          "DATE": DateTime.now(),
+
+                          // Controller is used to write text in input field
+                          "CONTENT": messageController.text,
+
+                        };
+
+                        // Add new messages to the database
+                        FirestoreHelper().addMessage(moi.uid, map);
+
+                        ));
+
                         if(messageController.text != ""){
                           String message = messageController.text;
-
                           setState(() {
                             messageController.text = "";
                           });
