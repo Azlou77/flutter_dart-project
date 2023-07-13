@@ -4,6 +4,7 @@ import 'package:ipssi_bd23_2/controller/constante.dart';
 import 'package:ipssi_bd23_2/controller/firestoreHelper.dart';
 import 'package:ipssi_bd23_2/model/utilisateur.dart';
 import 'package:ipssi_bd23_2/model/message.dart';
+import 'package:chat_bubbles/chat_bubbles.dart';
 
 
 class AllMessages extends StatefulWidget {
@@ -40,30 +41,34 @@ class _AllMessagesState extends State<AllMessages> {
 
                 // Create Message object with selected documents
                 Message lesAutresMessages = Message(documents[index]);
-                return Dismissible(
-                  key: Key(lesAutresMessages.uid),
-                  child: Card(
-                    elevation: 10,
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                    child: ListTile(
-                      title: Text(lesAutresMessages.recipient),
-                      subtitle: Text(lesAutresMessages.email,textAlign: TextAlign.start,),
 
+                // Use Bubble package to display messages data
+                Stack (
+                    children: [
 
+                      /* Use Scroll for better experience for
+                         better experience for user when navigate
+                         between list messages */
+                      SingleChildScrollView(
+                        child: Column(
+                          children: <Widget>[
+                            // Display message content in input field
+                            TextButton
+                              (
+                                onPressed: (){},
+                                // Get message content from Message object
+                                child: Text(lesAutresMessages.content)
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ),
-                );
+                    ],
 
-              }
               );
-
-            }
-
+              });
           }
+        }
     );
   }
 }
 
-}
