@@ -77,13 +77,12 @@ class _MessagerieViewState extends State<MessagerieView> {
                         // Define collection of key/value pairs for message table
                         Map<String, dynamic> map = {
 
-                          // Use constant "moi" define to initialise a user when the app is connected
-                          "UID": moi.uid,
-                          "NOM": moi.nom,
-                          "PRENOM": moi.prenom,
-
                           // To get the current date
                           "DATE": DateTime.now(),
+
+                          // Sender and recipient
+                          "SENDER": moi.uid,
+                          "RECIPIENT": widget.autrePersonne.uid,
 
                           // Controller is used to write text in input field
                           "CONTENT": messageController.text,
@@ -93,7 +92,8 @@ class _MessagerieViewState extends State<MessagerieView> {
                         // Add new messages to the database
                         FirestoreHelper().addMessage(moi.uid, map);
 
-                        ));
+
+
 
                         if(messageController.text != ""){
                           String message = messageController.text;
@@ -106,6 +106,7 @@ class _MessagerieViewState extends State<MessagerieView> {
 
                       },
                       icon: const Icon(Icons.send)
+
                   )
                 ],
               ),
