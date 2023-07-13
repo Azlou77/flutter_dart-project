@@ -64,10 +64,16 @@ class _MessagerieViewState extends State<MessagerieView> {
                 children: [
                   Flexible(
                     child: TextField(
-                      controller: messageController,
-                      decoration: const InputDecoration.collapsed(
-                          hintText: "Entrer votre message"
-                      ),
+                      // Display messages when user tap on this button
+                      onTap: (){
+                        controller: messageController;
+                        decoration: const InputDecoration.collapsed(
+                        hintText: "Entrer votre message"
+                        );
+
+                        // Get messages from database
+                        FirestoreHelper().getMessages();
+                      },
                       maxLines: null,
 
                     ),
@@ -91,8 +97,6 @@ class _MessagerieViewState extends State<MessagerieView> {
 
                         // Add new messages to the database
                         FirestoreHelper().addMessage(moi.uid, map);
-
-
 
 
                         if(messageController.text != ""){
