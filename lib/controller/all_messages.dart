@@ -57,7 +57,13 @@ class _AllMessagesState extends State<AllMessages> {
                               (
                                 onPressed: (){},
                                 // Get message content from Message object
-                                child: Text(lesAutresMessages.content)
+                                child:Row(children: <Widget>[
+                                  // Display content + date in one line
+                                  Text(lesAutresMessages.content),
+                                  //Convert date to string because Timestamp format
+                                  Text(lesAutresMessages.date.toString()),
+
+                                  ],),
                             ),
                           ],
                         ),

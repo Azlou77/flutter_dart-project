@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ipssi_bd23_2/controller/firestoreHelper.dart';
 import 'package:ipssi_bd23_2/model/utilisateur.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +53,10 @@ class _MessagerieViewState extends State<MessagerieView> {
             Flexible(
               child: Container(
                 height: MediaQuery.of(context).size.height,
-                child: const Text("Afficher les messages")
+                child: const Text("Afficher les messages"),
+    // Get messages from database
+    FirestoreHelper().getMessages();
+  },
               ),
             ),
             const Divider(height: 1.5,),
@@ -70,12 +74,6 @@ class _MessagerieViewState extends State<MessagerieView> {
                         decoration: const InputDecoration.collapsed(
                         hintText: "Entrer votre message"
                         );
-
-                        // Get messages from database
-                        FirestoreHelper().getMessages();
-                      },
-                      maxLines: null,
-
                     ),
                   ),
                   IconButton(
@@ -84,7 +82,7 @@ class _MessagerieViewState extends State<MessagerieView> {
                         Map<String, dynamic> map = {
 
                           // To get the current date
-                          "DATE": DateTime.now(),
+                          "DATE": Timestamp.now(),
 
                           // Sender and recipient
                           "SENDER": moi.uid,

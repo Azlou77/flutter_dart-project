@@ -12,14 +12,17 @@ class AllFavoris extends StatefulWidget {
 }
 
 class _AllFavorisState extends State<AllFavoris> {
+  // variables
   List mesFavoris = [];
 
   @override
   void initState() {
-    // TODO: implement initState
+    // Loop through the list of favoris
     for( int i = 0;  i< moi.favoris!.length ;i++ ){
+      // Get the user from the database
       FirestoreHelper().getUser(moi.favoris![i]).then((value){
         setState(() {
+          // On change state, add new favoris to the list
           mesFavoris.add(value);
         });
 
@@ -31,10 +34,12 @@ class _AllFavorisState extends State<AllFavoris> {
   @override
   Widget build(BuildContext context) {
     if(mesFavoris== []){
-      return Text("Aucun favrois");
+      // Return a text if the list is empty
+      return Text("Aucun favoris");
     }
     else
       {
+    // Return a grid view with List Users if the list is not empty
     return GridView.builder(
       itemCount: mesFavoris.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
