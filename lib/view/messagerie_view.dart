@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:ipssi_bd23_2/view/background_view.dart';
 import 'package:ipssi_bd23_2/model/message.dart';
 import '../controller/constante.dart';
+import 'package:ipssi_bd23_2/controller/all_messages.dart';
 
 class MessagerieView extends StatefulWidget {
   // Use to get informations for the personn who interact with
@@ -54,8 +55,7 @@ class _MessagerieViewState extends State<MessagerieView> {
               child: Container(
                 height: MediaQuery.of(context).size.height,
                 child: const Text("Afficher les messages"),
-    // Get messages from database
-    FirestoreHelper().getMessages();
+                const AllMessages(),
   },
               ),
             ),

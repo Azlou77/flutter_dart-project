@@ -4,7 +4,8 @@ import 'package:ipssi_bd23_2/controller/constante.dart';
 import 'package:ipssi_bd23_2/controller/firestoreHelper.dart';
 import 'package:ipssi_bd23_2/model/utilisateur.dart';
 import 'package:ipssi_bd23_2/model/message.dart';
-import 'package:chat_bubbles/chat_bubbles.dart';
+import 'package:ipssi_bd23_2/chat_bubble.dart';
+import 'package:flutter_chat_bubble/bubble_type.dart';
 
 
 class AllMessages extends StatefulWidget {
@@ -15,66 +16,52 @@ class AllMessages extends StatefulWidget {
 }
 
 class _AllMessagesState extends State<AllMessages> {
+  // variables
   @override
   Widget build(BuildContext context) {
-
     /* StreamBuilder allow you to get data from cloud Firebase
        and refresh the view when data change */
     return StreamBuilder<QuerySnapshot>(
-        // Use cloud Firebase functions with Messages collection
-        stream: FirestoreHelper().cloudMessages.snapshots(),
-          builder: (context,snap){
-
-          // Define list documents to get data from Firebase
-          List? documents = snap.data?.docs;
-          if(documents == []){
-
-            // Return Text if documents is empty
-            return const Text("Aucune Donnée");
-          }
-          else
-            {
-              // Return List of messages if documents is not empty
-              return ListView.builder(
-              itemCount: documents!.length,
-              itemBuilder: (context,index){
-
-                // Create Message object with selected documents
-                Message lesAutresMessages = Message(documents[index]);
-
-                // Use Bubble package to display messages data
-                Stack (
-                    children: [
-
-                      /* Use Scroll for better experience for
-                         better experience for user when navigate
-                         between list messages */
-                      SingleChildScrollView(
-                        child: Column(
-                          children: <Widget>[
-                            // Display message content in input field
-                            TextButton
-                              (
-                                onPressed: (){},
-                                // Get message content from Message object
-                                child:Row(children: <Widget>[
-                                  // Display content + date in one line
-                                  Text(lesAutresMessages.content),
-                                  //Convert date to string because Timestamp format
-                                  Text(lesAutresMessages.date.toString()),
-
-                                  ],),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-
+      // Use cloud Firebase functions with Messages collection
+      stream: FirestoreHelper().cloudMessages.snapshots(),
+      builder: (context, snap) {
+        // Define list documents to get data from Firebase
+        List? documents = snap.data?.docs;
+        if (documents == []) {
+          // Return Text if documents is empty
+          return const Text("Aucune Donnée");
+        } else {
+          // Return List of messages
+          return ListView.builder(
+            itemCount: documents!.length,
+            itemBuilder: (context, index) {
+              // Create Message object from documents
+              Message message = Message(documents[index]);
+              // Check if message is from me
+              bool isMe = message.sender == moi.uid;
+              // Return Bubble with message
+              return ChatBubble(
+                // Styles of Bubble
+                margin: const EdgeInsets.all(10),
+                alignment: isMe ? Alignment.topRight : Alignment.topLeft,
+                backGroundColor: isMe ? Colors.blue[200] : Colors.grey[200],
+                color: isMe ? Colors.blue[200] : Colors.grey[200],
+                child: Column(
+                  crossAxisAlignment:
+                      isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                  children: [
+                    Text(message.content),
+                    Text(
+                      DateFormat('dd/MM/yyyy kk:mm')
+                          .format(message.date.toDate()),
+                      style: const TextStyle(fontSize: 10),
+                    ),
+                  ],
+                ),
               );
-              });
-          }
+            },
+          );
         }
+      },
     );
   }
-}
-
