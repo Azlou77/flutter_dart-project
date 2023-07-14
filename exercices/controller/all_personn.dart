@@ -1,41 +1,75 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-/*
-    Class to list all person from the database
-    @class AllPerson
-    @table Users
-    @return List of personn
- */
+import 'package:ipssi_bd23_2/controller/constante.dart';
+import 'package:ipssi_bd23_2/controller/firestoreHelper.dart';
+import 'package:ipssi_bd23_2/model/utilisateur.dart';
+
 class AllPerson extends StatefulWidget {
-  const AllPerson({ Key? key }) : super(key: key);
+  const AllPerson({Key? key}) : super(key: key);
 
   @override
-  _AllPersonState createState() => _AllPersonState();
+  State<AllPerson> createState() => _AllPersonState();
 }
 
 class _AllPersonState extends State<AllPerson> {
+  // List bool
+  final List<bool> selectedFavoris = [];
+}
   @override
   Widget build(BuildContext context) {
-    // StreamBuilder is a widget to reduce repetetive tasks linked to the Stream using
     return StreamBuilder<QuerySnapshot>(
-        stream : FirestoreHelper().cloudUsers.snapshots(),
-            buidler: (context,snap){
-                List documents = snap.data!.docs;
-                if(documents == []){
-                    return Text("Aucune donnees");
+      stream: FirestoreHelper().cloudUsers.snapshots(),
+        builder: (context,snap){
+         List? documents = snap.data?.docs;
+         if(documents == []){
+           return const Text("Aucune Donnée");
+         }
+         else
+           {
+             return ListView.builder(
+               itemCount: documents!.length,
+                 itemBuilder: (context,index){
+                 Utilisateur lesAutres = Utilisateur(documents[index]);
+                 return Card(
+                   elevation: 10,
+                   color: Colors.white,
+                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                   child: ListTile(
+                     leading: CircleAvatar(
+                       radius: 60,
+                       backgroundImage: NetworkImage(lesAutres.avatar ?? defaultImage),
+                     ),
+                     title: Text(lesAutres.fullName),
+                     subtitle: Text(lesAutres.email,textAlign: TextAlign.start,),
+                     trailing: IconButton(
+                       isSelected: selectedFavoris[index],
+                       onPressed: (int index){
+                       // Add a new favoris in the database
+                       FirestoreHelper().addFavorites(moi.uid, moi.favoris);
+                       // Change state on click
+                       setState(() {
+                         // Change state on selected icon button
+                         // Loop the icons favoris
+                         for (int buttonIndex = 0; buttonIndex < isSelected.length; buttonIndex++)
+                           if  (buttonIndex == index) {
+                           // Change the color of the selected icon
+                           icon = const FaIcon(FontAwesomeIcons.pencil,color: Colors.red,size: 15,);
 
-                }
-                else {
-                    ListView.builder(
-                        // Count the number of users
-                        itemCount: documents!.length,
-                        itemBuilder: (context,index){
-                            // Index return the current user and all properties of him
-                            Utilisateurs lesAutres = Utilisateur(documents[index]);
-                            return Text(lesAutres.email)
-                        }
-                    )
-                }
-            }
+                           } else {
+                           // Change keep the color of the unselected icon
+                           icon = const FaIcon(FontAwesomeIcons.pencil,color: Colors.grey,size: 15,);
+                           }
+                         },
+                   ),
+                   ),
+                 );
+
+                 }
+             );
+
+           }
+
+        }
     );
-    }
+  }
 }
